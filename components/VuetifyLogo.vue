@@ -2,7 +2,7 @@
   <img
     class="VuetifyLogo"
     alt="Vuetify Logo"
-    src="/vuetify-logo.svg"
+    src="https://pbs.twimg.com/profile_images/1098140636295905280/E1YRufoX_400x400.png"
   >
 </template>
 

@@ -69,7 +69,7 @@
           <v-btn
             color="primary"
             nuxt
-            to="/inspire"
+            to="/Intelight"
           >
             Continue
           </v-btn>
