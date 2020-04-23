@@ -5,20 +5,17 @@
       <vuetify-logo />
     </div>
     <div class="create-container">
-      <!-- <button @click="create">
-        Add
-      </button> -->
-      <v-text-field color="success" loading disabled />
       <div id="video_box">
-        <div id="lightOne" @click="toggleLight(1)">
-          1
+        <div id="lightOne" class="one staticOne" @click="toggleLight(1)" @mouseover="onMouse" @mouseleave="offMouse">
+          <h3>Lamp 01</h3>
         </div>
-        <div id="lightTwo" @click="toggleLight(2)">
-          2
+        <div id="lightTwo" class="two staticTwo" @click="toggleLight(2)" @mouseover="onMouse2" @mouseleave="offMouse2">
+          <h3>Lamp 2</h3>
         </div>
-        <div id="lightThree" @click="toggleLight(3)">
-          3
+        <div id="lightThree" class="three staticThree" @click="toggleLight(3)" @mouseover="onMouse3" @mouseleave="offMouse3">
+          <h3>Lamp3</h3>
         </div>
+        <div class="text-center">
         <div id="video">
           <img
             style="-webkit-user-select: none;margin: auto;"
@@ -27,30 +24,32 @@
             height="auto"
           >
         </div>
+        </div>
       </div>
     </div>
     <v-card flat color="transparent">
       <v-subheader>
-        Luces
-        Regulables
+        <h3>
+          Luces
+          Regulables
+        </h3>
       </v-subheader>
-
       <v-card-text class="pt-3">
-        <v-slider
-          v-model="value"
-          max="50"
-          min="0"
-          :rules="rules"
-          label="Intensidad?"
-          step="01"
-          thumb-label="always"
-          ticks
-          @change="onChange"
-        />
+        <h4>
+          <v-slider
+            v-model="value"
+            max="50"
+            min="0"
+            :rules="rules"
+            label="Intensidad?"
+            step="01"
+            thumb-label="always"
+            ticks
+            @change="onChange"
+          />
+        </h4>
       </v-card-text>
     </v-card>
-    <b />
-    <v-text-field color="success" loading disabled />
     <div class="to-do-list-container" />
   </div>
 </template>
@@ -112,6 +111,26 @@ export default {
         })
     },
 
+    onMouse () {
+      document.getElementById('lightOne').classList.add('one')
+    },
+    offMouse () {
+      document.getElementById('lightOne').classList.remove('one')
+    },
+
+    onMouse2 () {
+      document.getElementById('lightTwo').classList.add('two')
+    },
+    offMouse2 () {
+      document.getElementById('lightTwo').classList.remove('two')
+    },
+    onMouse3 () {
+      document.getElementById('lightThree').classList.add('three')
+    },
+    offMouse3 () {
+      document.getElementById('lightThree').classList.remove('three')
+    },
+
     toggleLight (light) {
       axios.get(`https://us-central1-touchlightbr.cloudfunctions.net/app/api/v1/light/${light}/status`)
         .then((res) => {
@@ -148,46 +167,58 @@ export default {
 
 #video_box{
     float:center;
+    border-style: dashed;
+  border-width: thin;
+  border-color: rgba(0, 255, 64, 0.87);
 }
-#lightOne {
+.one {
   border-style: dashed;
   border-width: thin;
-  border-color: red;
-  position:absolute;
-  float:left;
-  width:40px;
-  min-height:40px;
+  border-color: rgba(0, 255, 64, 0.87);
   background-color: #0000ff61;
-  z-index:300000;
-  top: 308px;
-  left: 100px;
+
 }
 
-#lightTwo {
-  border-style: dashed;
-  border-width: thin;
-  border-color: red;
+.staticOne {
   position:absolute;
   float:left;
-  width:40px;
-  min-height:40px;
-  background-color: #0000ff61;
+  width:705px;
+  min-height:80px;
   z-index:300000;
-  top: 308px;
-  left: 240px;
+  top: 277px;
+  left: 462px;
+}
+.two {
+  border-style: dashed;
+  border-width: thin;
+  border-color: rgba(0, 255, 136, 0.637);
+  background-color: #0000ff61;
+
 }
 
-#lightThree {
+.staticTwo {
+  position:absolute;
+  float:left;
+  width:705px;
+  min-height:80px;
+  z-index:300000;
+  top: 158px;
+  left: 462px;
+}
+.three {
   border-style: dashed;
   border-width: thin;
-  border-color: red;
+  border-color: rgba(0, 255, 221, 0.808);
+  background-color: #0000ff61;
+  }
+
+.staticThree {
   position:absolute;
   float:left;
   width:40px;
   min-height:40px;
-  background-color: #0000ff61;
   z-index:300000;
-  top: 308px;
-  left: 160px;
+  top: 440px;
+  left: 750px;
 }
 </style>
